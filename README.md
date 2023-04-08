@@ -19,3 +19,5 @@ We implemented:
 In the directory extraction, you will find all the script you need to run an extraction from our previous results.
 
 Sadly, we did not manage to extract interesting knowledge from this part as we didn't have enough time to study this part.
+
+[embed]https://github.com/Linthora/trajectory_analysis_dota/blob/main/Rapport_projet_dota-1.pdf[/embed]
