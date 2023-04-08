@@ -20,4 +20,10 @@ In the directory extraction, you will find all the script you need to run an ext
 
 Sadly, we did not manage to extract interesting knowledge from this part as we didn't have enough time to study this part.
 
+[![Plugin Version](https://img.shields.io/wordpress/plugin/v/dirtysuds-embed-pdf.svg)](https://wordpress.org/plugins/dirtysuds-embed-pdf/)
+[![License](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://wordpress.org/about/license/)
+[![Tested Version](https://img.shields.io/wordpress/v/dirtysuds-embed-pdf.svg)](https://wordpress.org/plugins/dirtysuds-embed-pdf/)
+[![Rating](https://img.shields.io/wordpress/plugin/r/dirtysuds-embed-pdf.svg)](https://wordpress.org/support/view/plugin-reviews/dirtysuds-embed-pdf)
+[![Downloads](https://img.shields.io/wordpress/plugin/dt/dirtysuds-embed-pdf.svg)](https://wordpress.org/plugins/dirtysuds-embed-pdf/)
+
 [embed]https://github.com/Linthora/trajectory_analysis_dota/blob/main/Rapport_projet_dota-1.pdf[/embed]
