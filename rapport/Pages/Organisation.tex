@@ -1,0 +1,49 @@
+\setlength{\columnsep}{0.6cm}
+
+\chapter{Organisation du projet} % titre à revoir ptet
+
+Comme évoqué, l'objectif du projet de pouvoir extraire des connaissances à partir de nos données séquentielles. Pour y arriver, nous devons au préalable traiter successivement nos données pour les rendre exploitables, si possible en un temps raisonnable. 
+
+Les trajectoires disponibles sont très précises et représentent des suites de segment de déplacement à l'échelle de la seconde. Pour les rendre comparables, il est nécessaire d'obtenir des segments plus longs, caractéristiques d'un mouvement plus global~:  
+une compression des trajectoires doit être entreprise. On utilisera pour cela le principe MDL avec la formalisation proposée par la méthode de \href{https://hanj.cs.illinois.edu/pdf/sigmod07_jglee.pdf}{TRACLUS}. Ensuite, afin de pouvoir procéder à une extraction séquentielle de connaissance sur nos données, nous devons les discrétiser, c'est-à-dire diviser notre plage de valeurs quasi continues en un nombre fini de valeurs que l'on pourra comparer. Pour cette étape, nous appliquerons un clustering sur les segments composant nos trajectoires compressées. Après cette étape de discrétisation, des clusters de segments sont considérés comme équivalents. Il s'agit alors d'effectuer un recodage des trajectoires à partir des identifiants de ces clusters pour obtenir des trajectoires discrétisées. Nous pouvons finalement procéder l'extraction  de connaissances séquentielle sur les trajectoires. 
+
+
+
+\section{Pipeline}
+
+Ce plan de traitement est illustré par le pipeline à la figure~\ref{pipeline}.
+
+
+\noindent Appliqué à notre cas, nous obtenons les étapes suivantes :
+%Afin de répondre à notre problématique, nous avons opté d'opérer en plusieurs étapes successives comme monter ci-dessus.
+\begin{enumerate}
+    \item \textbf{compression MDL :} le processus de compression implique la conversion de fichiers CSV représentant la position continue (trajectoire) des joueurs lors d'une partie en un fichier CSV contenant des points caractéristiques, qui forment la représentation compressée des trajectoires des joueurs. Nous appliquons cette méthode sur toutes nos parties. 
+    \item \textbf{discrétisation par clustering :} de ces représentations compressées, nous récupérons les segments caractéristiques de nos trajectoires (sur toutes les parties à analyser), sur lesquels nous appliquons notre clustering. Nous écrivons le résultat dans un CSV.
+    %nous réalisons une discrétisation par clustering afin d'obtenir
+    %des sets items(ensemble de clusters).
+    \item \textbf{recodage :} à cette étape, nous avons des clusters de segments, représentants nos items, et nos trajectoires compressées. Nous recodons alors nos trajectoires compressées en une suite d'items correspondants dans un nouveau CSV, pour chaque partie. Cela permet de réintroduire la notion de temporalité. 
+    
+    %Notre objectif est d'analyser les tactiques des différentes équipes au cours des parties de DOTA 2. Pour ce faire, nous devons réintroduire la dimension temporelle en utilisant une technique de recodage. Cette dernière nous permet d'obtenir des séquences d'itemsets, qui seront utilisées pour l'analyse.
+    \item \textbf{Extraction séquentielle :} Nous pouvons alors procéder à une extraction séquentielle, en utilisant l'algorithme PréfixSpan adapté à l'extraction séquentielle. Pour cette étape, nous pouvons découper nos trajectoires pour cibler différentes temporalités tactiques des parties.
+    %Nous utilisons ensuite l'algorithme d'extraction séquentielle PréfixSpan pour récupérer les séquences d'itemsets, qui représentent des motifs fréquents dans les données.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[node distance = 2.2cm]
+    \node(traj)[terminator]{Données trajectoires};
+    \node(segs)[terminator, right of=traj, xshift=3cm]{Segments carac\-téristiques};
+    \node(items)[terminator, right of=segs, xshift=3cm]{Items};
+    \node(itemsets)[terminator, below of=items, yshift=-3.5cm]{Séquences d'itemsets};
+    \node(itemsetsFreq)[terminator, left of=itemsets, xshift=-3cm]{Séquences fréquentes d'itemsets};
+    \coordinate (Qf) at ([yshift=1.5cm]itemsets);
+    \draw [arrow] (traj) -- node[anchor=south]{\tiny{\textbf{Compression MDL}}}(segs);
+    \draw [arrow] (segs) -- node[anchor=south]{\tiny{\textbf{Discrétisation}}}(items);
+    \draw [arrow] (segs) -- node[anchor=north]{\tiny{\textbf{par clusterisation}}}(items);
+    \draw [arrow] (items) -- node[anchor=east]{\tiny{\textbf{Recodage}}}(itemsets);
+    \draw [arrow] (itemsets) -- node[anchor=south]{\tiny{\textbf{Extraction}}}(itemsetsFreq);
+    \draw[thick,->,>=stealth,in=180,out=0] (traj) |- (Qf);
+\end{tikzpicture}
+\caption{Illustration du pipeline.}
+\label{pipeline}
+\end{figure}

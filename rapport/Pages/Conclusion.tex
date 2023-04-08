@@ -1,0 +1,38 @@
+\chapter{Conclusion}
+
+%Pour conclure ce projet sur l'analyse de trajectoires, nous pouvons affirmer que 
+
+En conclusion, ce projet a permis de mettre en évidence la méthode d'analyse de donnée et plus particulièrement les enjeux liés à l'analyse de trajectoire. Ici des trajectoires issues d'un jeu vidéo. L'objectif étant de découvrir les trajectoires fréquentes et les motifs de jeu récurrents. Pour y arriver, un pipeline \ref{pipeline} a été établi pour réaliser le traitement nécessaire à l'exploitation de ces données. La problématique étant d'explorer différentes méthodes de discrétisation et mettre en avant les différences de ces dernières. Tout en gardant en tête l'objectif de discuter l'intérêt des régularités découvertes dans les données. Au cours du projet s'est imposé une problématique supplémentaire, celle de la paramétrisation de ces algorithmes et du modèle de représentation choisi a été abordé.  
+
+Ainsi, par une compression basée sur le principe MDL, et avec l'utilisation des algorithmes k-means, k-medoids ou propagation d'affinité pour la discrétisation, nous avons pu extraire des régularités intéressantes. Il a même été possible d'aller un peu plus loin avec une extraction séquentielle de motifs de jeu. 
+
+%Ce projet avait pour objectif de servir d'introduction à la science des données en s'appuyant sur l'analyse de trajectoire, avec des données issues d'un jeu vidéo. L'objectif étant de découvrir les trajectoires fréquentes et les motifs de jeu récurrents. Pour y arriver, un pipeline \ref{pipeline} a été établi pour réaliser le traitement nécessaire à l'exploitation de ces données. La problématique étant alors d'illustrer les différences entre les différentes méthodes de discrétisation et l'intérêt des régularités découvertes dans les données. Au cours du projet s'est ajouté à cela la question sous-jacente du paramétrage des algorithmes utilisés.
+
+%Ce traitement est composé de plusieurs étapes~: la compression (par principe MDL \ref{compression}), la discrétisation (par clustering \ref{clustering}), un recodage, puis l'extraction séquentielle \ref{extraction}. 
+%L'étape de discrétisation est possible par trois algorithmes différents~: k-means \ref{algo_k}, k-medoids \ref{algo_k} ou propagation d'affinités \ref{propa}.
+    
+
+% Conclusion
+% I Récapitulatif de la problématique et de la réalisation
+% I Récapitulatif des résultats
+% I Propositions d’améliorations
+
+\section{Résultats}
+
+Les données initiales étant continue, elles sont donc très volumineuses. Grâce à l'étape de compression \ref{fig:traj_versus}, ce volume a été réduit en moyenne de 67.9\%. Ceci en gardant un niveau idéal de précision et de concision.
+
+Pour l'étape de discrétisation, il s'est avéré crucial de trouver un paramétrage approprié. Paramétrage d'abord sur le modèle de représentation sous forme de segments des morceaux de trajectoires. Puis sur le nombre de clusters à privilégier. Les résultats (figures \ref{fig:kmeans_seq}, \ref{fig:kmed_seq} et \ref{fig:propa_seq}) ont conduit à la conclusion que les différents algorithmes de clustering - bien qu'ils partagent le même objectif - nécessitent différents paramétrages. Sur le nombre de clusters, bien qu'ayant un fonctionnement très proche, k-means  \ref{fig:kmean_nb} et k-medoids \ref{fig:kmed_nb} n'ont pas le même nombre de clusters optimal. Il en va de même pour leurs spécifications de notion de distance. Cette dernière donnant contre toutes attentes des résultats bien différents sur une paramétrisation pour les deux algorithmes. 
+Propagation d'affinités s'est montrée inadapté sur le volume de donnée traité. En effet, bien qu'il soit généralement très efficace et pertinent dans bien d'autre cas, ici sa complexité en $O(n^2)$ a été un facteur très limitant dans son étude.
+
+En ce qui concerne la comparaison entre les différents algorithmes, les résultats ont montré que k-means et Propagation d'Affinité ont tendance à mettre l'accent sur le positionnement des joueurs \ref{fig:kmean_short} plutôt que sur l'évolution de leurs trajectoires, particulièrement dans le cas de la propagation d'affinité \ref{fig:propa_011}, tandis que k-medoids montre davantage l'évolution des trajectoires. Cette différence s'explique par les méthodes spécifiques utilisées par chaque algorithme pour effectuer le clustering. 
+
+Pour l'extraction séquentielle, les résultats obtenus sont partiellement incomplets et peu concluants en raison du manque de temps et de tests plus approfondis. Les motifs n'ont pu être extraits qu'avec un support faible et ne sont jamais composés de plus de deux segments successifs. Il convient toutefois de noter que le modèle utilisé pourrait ne pas être le plus adapté pour cette étude.
+%TODO: Conclu résultat extraction
+
+
+\section{Améliorations}
+Sur ce projet, l'analyse séquentielle offre le plus grand potentiel d'amélioration significative. Le projet s'est principalement concentré sur l'étude d'une seule des deux équipes pendant les différentes parties. Il serait intéressant d'analyser les deux équipes simultanément en identifiant les actions de chaque équipe par rapport à l'autre et en extrayant des tactiques spécifiques à chacune d'elles. Alternativement, il serait pertinent d'analyser chaque équipe individuellement pour extraire les tactiques qu'elle utilise habituellement lors de différentes parties auxquelles elle a participé.
+
+Il est également pertinent de mentionner la possibilité de suivre une voie différente que celle utilisée afin d'arriver au même objectif. Par exemple, la discrétisation pourrait être réalisée par un découpage direct de la carte pour avoir une notion de position étendu. Cela aurait pour avantage de garder de préserver un aspect spatio-temporel plus précis concernant les déplacements des joueurs. L'inconvénient serait d'obtenir au moment de l'extraction les trajectoires courantes comme motifs, mais il serait possible d'analyser plus finement l'organisation des équipes à des moments précis.
+De la même manière, avec une connaissance du jeu avancé, il serait possible de mener une étude précise sur les motifs concernant les objectifs du jeu.
+

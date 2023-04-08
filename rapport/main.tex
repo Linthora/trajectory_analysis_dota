@@ -1,0 +1,61 @@
+% Loading packages
+\documentclass[11pt, twoside]{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, inner=0.75in, outer=0.75in, top=0.75in, bottom=0.75in]{geometry}
+\usepackage{lipsum} % for dummy text only
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{blindtext}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{hyphenat}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{amsmath}
+%\usepackage{emoji}
+\usetikzlibrary{shapes, arrows}
+\tikzstyle{terminator} = [rectangle, draw, text centered, text width=2cm, rounded corners, minimum height=2em, fill=green!25]
+\tikzstyle{terminator2} = [rectangle, draw, text centered, text width=2cm, rounded corners, minimum height=2em, fill=red!25]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+% Setting document-wide changes
+\renewcommand{\bibname}{References}
+\renewcommand{\arraystretch}{1.5} % For tables
+\setstretch{1.25}   % Set line spacing
+
+\titleformat*{\section}{\LARGE}
+\titleformat*{\subsection}{\Large}
+
+
+% Begin document here
+\begin{document}
+%\pagenumbering{roman}
+
+\include{titlepage}
+
+\tableofcontents
+
+\newpage
+\include{Pages/Introduction}
+\include{Pages/Organisation}
+%\include{Pages/Preprocessing}
+%\include{Pages/Extraction}
+\include{Pages/Pipeline}
+\include{Pages/Experimations}
+\include{Pages/Conclusion}
+\include{Pages/Annexe}
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{ref}
+\end{document}
+
+
