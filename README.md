@@ -19,3 +19,5 @@ We implemented:
 In the directory extraction, you will find all the script you need to run an extraction from our previous results.
 
 Sadly, we did not manage to extract interesting knowledge from this part as we didn't have enough time to study this part.
+
+If you wish to know more or pursue this project, we have some ideas to extract more meaningfull pattern in this last part.
