@@ -26,4 +26,4 @@ Sadly, we did not manage to extract interesting knowledge from this part as we d
 [![Rating](https://img.shields.io/wordpress/plugin/r/dirtysuds-embed-pdf.svg)](https://wordpress.org/support/view/plugin-reviews/dirtysuds-embed-pdf)
 [![Downloads](https://img.shields.io/wordpress/plugin/dt/dirtysuds-embed-pdf.svg)](https://wordpress.org/plugins/dirtysuds-embed-pdf/)
 
-[embed]https://github.com/Linthora/trajectory_analysis_dota/blob/main/Rapport_projet_dota-1.pdf[/embed]
+`[embed]https://github.com/Linthora/trajectory_analysis_dota/blob/main/Rapport_projet_dota-1.pdf[/embed]`
